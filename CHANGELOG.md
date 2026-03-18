@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/shadinmd/versions/compare/v1.0.1...v1.0.2) (2026-03-18)
+
+
+### Bug Fixes
+
+* fixed update manifest error ([8d5e392](https://github.com/shadinmd/versions/commit/8d5e39212de2f1f779a183bcfb8ff925456451b3))
+
 ## [1.0.1](https://github.com/shadinmd/versions/compare/v1.0.0...v1.0.1) (2026-03-18)
 
 
