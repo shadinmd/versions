@@ -1,3 +1,11 @@
+# [1.0.0-dev.3](https://github.com/shadinmd/versions/compare/v1.0.0-dev.2...v1.0.0-dev.3) (2026-03-18)
+
+
+### Bug Fixes
+
+* removd test prefix from version tag ([9c8a0d4](https://github.com/shadinmd/versions/commit/9c8a0d4f9a3b69d9f761ca4b46c5332ebf8fba6a))
+* work please please ([5ca1ff0](https://github.com/shadinmd/versions/commit/5ca1ff02606694119faece916433849624d5c922))
+
 # [1.0.0-dev.2](https://github.com/shadinmd/versions/compare/v1.0.0-dev.1...v1.0.0-dev.2) (2026-03-18)
 
 
