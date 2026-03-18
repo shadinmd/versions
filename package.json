@@ -39,15 +39,15 @@
       "main",
       {
         "name": "staging",
-        "prerelease": "rc"
+        "prerelease": "staging"
       },
       {
         "name": "qa",
-        "prerelease": "beta"
+        "prerelease": "qa"
       },
       {
         "name": "dev",
-        "prerelease": "alpha"
+        "prerelease": "dev"
       }
     ],
     "plugins": [

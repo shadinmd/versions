@@ -6,7 +6,7 @@ const App = () => {
         justifyContent: "center",
         alignItems: "center",
         height: "100vh",
-        color: "white",
+        color: "grey",
         fontSize: "2rem",
       }}
     >
