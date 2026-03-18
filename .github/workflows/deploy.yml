@@ -37,7 +37,9 @@ jobs:
 
       - name: Semantic Release
         id: semantic
-        run: npx semantic-release
+        run: |
+          npx semantic-release
+          echo "new_release_version=$(git describe --tags --abbrev=0 2>/dev/null || echo "0.0.0")" >> $GITHUB_OUTPUT
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
