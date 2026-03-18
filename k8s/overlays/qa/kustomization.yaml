@@ -1,0 +1,19 @@
+resources:
+- ../../base
+namespace: qa
+namePrefix: qa-
+images:
+- name: versions
+  newTag: qa
+replicas:
+- name: versions
+  count: 1
+patches:
+- target:
+    kind: Ingress
+    name: versions
+  patch: |-
+    - op: replace
+      path: /spec/rules/0/host
+      value: qa-versions.nodecluster.online
+

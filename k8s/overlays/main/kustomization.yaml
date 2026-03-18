@@ -1,0 +1,10 @@
+resources:
+  - ../../base
+namespace: main
+namePrefix: main-
+images:
+  - name: versions
+    newTag: latest
+replicas:
+  - name: versions
+    count: 3

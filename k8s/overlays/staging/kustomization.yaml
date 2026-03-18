@@ -1,0 +1,19 @@
+resources:
+- ../../base
+namespace: staging
+namePrefix: staging-
+images:
+- name: versions
+  newTag: staging
+replicas:
+- name: versions
+  count: 2
+patches:
+- target:
+    kind: Ingress
+    name: versions
+  patch: |-
+    - op: replace
+      path: /spec/rules/0/host
+      value: staging-versions.nodecluster.online
+
