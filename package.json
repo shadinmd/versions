@@ -39,10 +39,14 @@
       "main",
       {
         "name": "staging",
-        "prerelease": "beta"
+        "prerelease": "rc"
       },
       {
         "name": "qa",
+        "prerelease": "beta"
+      },
+      {
+        "name": "dev",
         "prerelease": "alpha"
       }
     ],
