@@ -6,11 +6,11 @@ const App = () => {
         justifyContent: "center",
         alignItems: "center",
         height: "100vh",
-        color: "grey",
+        color: "white",
         fontSize: "2rem",
       }}
     >
-      Version: {__APP_VERSION__}
+      Test Version: {__APP_VERSION__}
     </div>
   );
 };
