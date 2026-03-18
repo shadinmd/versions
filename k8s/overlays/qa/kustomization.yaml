@@ -1,6 +1,6 @@
 resources:
 - ../../base
-namespace: qa
+namespace: qa-versions
 namePrefix: qa-
 images:
 - name: versions

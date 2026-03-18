@@ -1,6 +1,6 @@
 resources:
 - ../../base
-namespace: staging
+namespace: staging-versions
 namePrefix: staging-
 images:
 - name: versions

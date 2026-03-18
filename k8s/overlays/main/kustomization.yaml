@@ -1,6 +1,6 @@
 resources:
   - ../../base
-namespace: main
+namespace: main-versions
 namePrefix: main-
 images:
   - name: versions
