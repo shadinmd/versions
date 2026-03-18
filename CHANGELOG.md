@@ -1,3 +1,10 @@
+# [1.0.0-dev.2](https://github.com/shadinmd/versions/compare/v1.0.0-dev.1...v1.0.0-dev.2) (2026-03-18)
+
+
+### Bug Fixes
+
+* please work ([e738188](https://github.com/shadinmd/versions/commit/e7381886a59bfe73499ade8d33c545ffcd75585f))
+
 # 1.0.0-dev.1 (2026-03-18)
 
 
