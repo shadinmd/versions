@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/shadinmd/versions/compare/v1.0.0...v1.0.1) (2026-03-18)
+
+
+### Bug Fixes
+
+* changed namespace ([c82f22c](https://github.com/shadinmd/versions/commit/c82f22c362c9f25d21ac9f91717c6b98804ac446))
+
 # 1.0.0 (2026-03-18)
 
 
