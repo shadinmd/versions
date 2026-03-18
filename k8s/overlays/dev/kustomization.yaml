@@ -1,18 +1,21 @@
 resources:
-  - ../../base
+- ../../base
 namespace: dev-versions
 namePrefix: dev-
 images:
-  - name: versions
-    newTag: dev
+- name: versions
+  newName: ghcr.io/shadinmd/versions
+  newTag: dev-9308b4f
 replicas:
-  - name: versions
-    count: 1
+- count: 1
+  name: versions
 patches:
-  - target:
-      kind: Ingress
-      name: versions
-    patch: |-
-      - op: replace
-        path: /spec/rules/0/host
-        value: dev-versions.nodecluster.online
+- patch: |-
+    - op: replace
+      path: /spec/rules/0/host
+      value: dev-versions.nodecluster.online
+  target:
+    kind: Ingress
+    name: versions
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization

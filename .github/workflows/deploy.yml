@@ -69,8 +69,9 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ github.repository }}
           tags: |
-            type=sha,prefix=${{ github.ref_name }}-
-            type=ref,event=branch
+            # Prioritize the SHA tag so it becomes the 'version' output
+            type=sha,prefix=${{ github.ref_name }}-,priority=1000
+            type=ref,event=branch,priority=900
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
@@ -90,24 +91,42 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
+          # Use the latest commit on the branch, especially if semantic-release just pushed one
+          ref: ${{ github.ref_name }}
           fetch-depth: 0
 
       - name: Update Kustomize image
         run: |
-          # Map branch names to their overlay folders
           BRANCH=${{ github.ref_name }}
           FOLDER=$BRANCH
           if [ "$BRANCH" == "main" ]; then FOLDER="main"; fi
+          
+          IMAGE_TAG="${{ needs.build-and-push.outputs.image_tag }}"
+          FULL_IMAGE="${{ env.REGISTRY }}/${{ github.repository }}:$IMAGE_TAG"
+          
+          echo "Updating overlay: $FOLDER"
+          echo "New image: $FULL_IMAGE"
 
           cd k8s/overlays/$FOLDER
-          # Update the image tag in kustomization.yaml to the new SHA-based tag
-          kustomize edit set image versions=${{ env.REGISTRY }}/${{ github.repository }}:${{ needs.build-and-push.outputs.image_tag }}
+          # Update the image tag in kustomization.yaml
+          # We match the 'versions' name used in your kustomization.yaml
+          kustomize edit set image versions=$FULL_IMAGE
+          
+          echo "Resulting kustomization.yaml:"
+          cat kustomization.yaml
 
       - name: Commit and push changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
           git add k8s/overlays/
-          git commit -m "deploy: update image tag to ${{ needs.build-and-push.outputs.image_tag }} [skip ci]"
-          git pull --rebase origin ${{ github.ref_name }}
-          git push
+          
+          # Only commit if there are staged changes
+          if git diff --staged --quiet; then
+            echo "No changes to manifests. Skipping commit."
+          else
+            git commit -m "deploy: update image tag to ${{ needs.build-and-push.outputs.image_tag }} [skip ci]"
+            git pull --rebase origin ${{ github.ref_name }}
+            git push
+          fi
