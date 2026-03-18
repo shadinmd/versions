@@ -5,7 +5,7 @@ namePrefix: main-
 images:
 - name: versions
   newName: ghcr.io/shadinmd/versions
-  newTag: main-f61dd96
+  newTag: main-708ec9b
 replicas:
 - count: 3
   name: versions
