@@ -69,8 +69,9 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ github.repository }}
           tags: |
-            type=sha,prefix=${{ github.ref_name }}-
-            type=ref,event=branch
+            # Prioritize the SHA tag so it becomes the 'version' output
+            type=sha,prefix=${{ github.ref_name }}-,priority=1000
+            type=ref,event=branch,priority=900
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
