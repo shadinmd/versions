@@ -4,16 +4,18 @@ namespace: qa-versions
 namePrefix: qa-
 images:
 - name: versions
+  newName: ghcr.io/shadinmd/versions
   newTag: qa
 replicas:
-- name: versions
-  count: 1
+- count: 1
+  name: versions
 patches:
-- target:
-    kind: Ingress
-    name: versions
-  patch: |-
+- patch: |-
     - op: replace
       path: /spec/rules/0/host
       value: qa-versions.nodecluster.online
-
+  target:
+    kind: Ingress
+    name: versions
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
