@@ -5,7 +5,7 @@ namePrefix: staging-
 images:
 - name: versions
   newName: ghcr.io/shadinmd/versions
-  newTag: staging-148541f
+  newTag: staging-c78af7c
 replicas:
 - count: 2
   name: versions
