@@ -1,3 +1,10 @@
+# [1.0.0-dev.5](https://github.com/shadinmd/versions/compare/v1.0.0-dev.4...v1.0.0-dev.5) (2026-03-18)
+
+
+### Bug Fixes
+
+* removed test prefix from page ([ec0c10e](https://github.com/shadinmd/versions/commit/ec0c10e6a3626169da4da12f4a85b69619b4fbb3))
+
 # [1.0.0-dev.4](https://github.com/shadinmd/versions/compare/v1.0.0-dev.3...v1.0.0-dev.4) (2026-03-18)
 
 
