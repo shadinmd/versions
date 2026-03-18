@@ -5,6 +5,15 @@
 
 * added prereelase tag for dev ([64d63c3](https://github.com/shadinmd/versions/commit/64d63c39b4bff22b46404e64ca19185a33db6a03))
 * added versino prefix to version number ([37f5eae](https://github.com/shadinmd/versions/commit/37f5eaef0cad203ff741452cee09d1fc737b7be5))
+* removed version prefix ([4aae23f](https://github.com/shadinmd/versions/commit/4aae23fa0292fd6b0b2f3beeba23607f286b2043))
+
+# [1.1.0-alpha.1](https://github.com/shadinmd/versions/compare/v1.0.2...v1.1.0-alpha.1) (2026-03-18)
+
+
+### Features
+
+* added prereelase tag for dev ([64d63c3](https://github.com/shadinmd/versions/commit/64d63c39b4bff22b46404e64ca19185a33db6a03))
+* added versino prefix to version number ([37f5eae](https://github.com/shadinmd/versions/commit/37f5eaef0cad203ff741452cee09d1fc737b7be5))
 
 ## [1.0.2](https://github.com/shadinmd/versions/compare/v1.0.1...v1.0.2) (2026-03-18)
 
