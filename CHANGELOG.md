@@ -1,3 +1,10 @@
+# [1.0.0-dev.4](https://github.com/shadinmd/versions/compare/v1.0.0-dev.3...v1.0.0-dev.4) (2026-03-18)
+
+
+### Features
+
+* added prefix for prefix ([ae3580b](https://github.com/shadinmd/versions/commit/ae3580befcc0fcbfbd9db5391cc7f791cea43e98))
+
 # [1.1.0-alpha.1](https://github.com/shadinmd/versions/compare/v1.0.2...v1.1.0-alpha.1) (2026-03-18)
 
 
