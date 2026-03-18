@@ -10,7 +10,7 @@ const App = () => {
         fontSize: "2rem",
       }}
     >
-      Test Version: {__APP_VERSION__}
+      Version: {__APP_VERSION__}
     </div>
   );
 };
