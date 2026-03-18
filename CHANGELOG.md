@@ -1,3 +1,21 @@
+# 1.0.0-alpha.1 (2026-03-18)
+
+
+### Bug Fixes
+
+* added back the versin prefix ([52298c1](https://github.com/shadinmd/versions/commit/52298c1440f36b151c05b5eebeadba8f1c6f7caf))
+* chagned npm ci operation to npm install ([e9b664c](https://github.com/shadinmd/versions/commit/e9b664c4e8593519298f69a4b3c130c0082ef1a7))
+* changed namespace ([c82f22c](https://github.com/shadinmd/versions/commit/c82f22c362c9f25d21ac9f91717c6b98804ac446))
+* fixed update manifest error ([8d5e392](https://github.com/shadinmd/versions/commit/8d5e39212de2f1f779a183bcfb8ff925456451b3))
+
+
+### Features
+
+* added prereelase tag for dev ([64d63c3](https://github.com/shadinmd/versions/commit/64d63c39b4bff22b46404e64ca19185a33db6a03))
+* added versino prefix to version number ([37f5eae](https://github.com/shadinmd/versions/commit/37f5eaef0cad203ff741452cee09d1fc737b7be5))
+* ci/cd setup files ([b117cfd](https://github.com/shadinmd/versions/commit/b117cfd0f05c5746bbba6b3f04da76e24229f61c))
+* removed version prefix ([4aae23f](https://github.com/shadinmd/versions/commit/4aae23fa0292fd6b0b2f3beeba23607f286b2043))
+
 # [1.1.0-alpha.1](https://github.com/shadinmd/versions/compare/v1.0.2...v1.1.0-alpha.1) (2026-03-18)
 
 
