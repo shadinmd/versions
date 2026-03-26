@@ -5,7 +5,7 @@ namePrefix: qa-
 images:
 - name: versions
   newName: ghcr.io/shadinmd/versions
-  newTag: qa-c85d678
+  newTag: qa-ad5782f
 replicas:
 - count: 1
   name: versions
