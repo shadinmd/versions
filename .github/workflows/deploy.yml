@@ -4,9 +4,9 @@ on:
   pull_request:
     branches:
       - dev
-      - main
       - qa
       - staging
+      - main
     types:
       - closed
 
@@ -15,6 +15,7 @@ env:
 
 jobs:
   release:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -22,6 +23,7 @@ jobs:
       pull-requests: write
     outputs:
       new_release_version: ${{ steps.semantic.outputs.new_release_version }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -32,7 +34,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: "npm"
+          cache: npm
 
       - name: Install dependencies
         run: npm install
@@ -46,34 +48,32 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   build-and-push:
+    if: github.event.pull_request.merged == true
     needs: release
     runs-on: ubuntu-latest
-    outputs:
-      image_tag: ${{ steps.meta.outputs.version }}
     permissions:
       contents: read
       packages: write
+    outputs:
+      image_tag: ${{ steps.meta.outputs.version }}
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.ref }} # Ensure we get the latest commit if release made one
 
-      - name: Log in to the Container registry
+      - name: Log in to GHCR
         uses: docker/login-action@v3
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Extract metadata (tags, labels) for Docker
+      - name: Extract metadata
         id: meta
         uses: docker/metadata-action@v5
         with:
           images: ${{ env.REGISTRY }}/${{ github.repository }}
           tags: |
-            # Prioritize the SHA tag so it becomes the 'version' output
             type=sha,prefix=${{ github.base_ref }}-,priority=1000
             type=ref,event=branch,priority=900
 
@@ -88,6 +88,7 @@ jobs:
             VITE_APP_VERSION=${{ needs.release.outputs.new_release_version || steps.meta.outputs.version }}
 
   update-manifests:
+    if: github.event.pull_request.merged == true
     needs: [release, build-and-push]
     runs-on: ubuntu-latest
     permissions:
@@ -97,7 +98,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          # Use the latest commit on the branch, especially if semantic-release just pushed one
           ref: ${{ github.base_ref }}
           fetch-depth: 0
 
@@ -105,21 +105,13 @@ jobs:
         run: |
           BRANCH=${{ github.base_ref }}
           FOLDER=$BRANCH
-          if [ "$BRANCH" == "main" ]; then FOLDER="main"; fi
+          if [ "$BRANCH" = "main" ]; then FOLDER="main"; fi
 
           IMAGE_TAG="${{ needs.build-and-push.outputs.image_tag }}"
           FULL_IMAGE="${{ env.REGISTRY }}/${{ github.repository }}:$IMAGE_TAG"
 
-          echo "Updating overlay: $FOLDER"
-          echo "New image: $FULL_IMAGE"
-
           cd k8s/overlays/$FOLDER
-          # Update the image tag in kustomization.yaml
-          # We match the 'versions' name used in your kustomization.yaml
           kustomize edit set image versions=$FULL_IMAGE
-
-          echo "Resulting kustomization.yaml:"
-          cat kustomization.yaml
 
       - name: Commit and push changes
         run: |
@@ -128,9 +120,8 @@ jobs:
 
           git add k8s/overlays/
 
-          # Only commit if there are staged changes
           if git diff --staged --quiet; then
-            echo "No changes to manifests. Skipping commit."
+            echo "No changes"
           else
             git commit -m "deploy: update image tag to ${{ needs.build-and-push.outputs.image_tag }} [skip ci]"
             git pull --rebase origin ${{ github.base_ref }}
