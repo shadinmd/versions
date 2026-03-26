@@ -9,6 +9,8 @@ on:
       - main
     types:
       - closed
+    paths-ignore:
+      - 'k8s/**'
 
 env:
   REGISTRY: ghcr.io
@@ -123,7 +125,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "No changes"
           else
-            git commit -m "deploy: update image tag to ${{ needs.build-and-push.outputs.image_tag }} [skip ci]"
+            git commit -m "deploy: update image tag to ${{ needs.build-and-push.outputs.image_tag }}"
             git pull --rebase origin ${{ github.base_ref }}
             git push
           fi
