@@ -13,6 +13,7 @@ const App = () => {
     >
       <p>Version: {__APP_VERSION__}</p>
       <p>feat 1</p>
+      <p>feat 2</p>
     </div>
   );
 };
