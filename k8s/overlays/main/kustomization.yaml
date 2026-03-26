@@ -1,0 +1,13 @@
+resources:
+- ../../base
+namespace: main-versions
+namePrefix: main-
+images:
+- name: versions
+  newName: ghcr.io/shadinmd/versions
+  newTag: main-54b370d
+replicas:
+- count: 3
+  name: versions
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization

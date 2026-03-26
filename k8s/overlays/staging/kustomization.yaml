@@ -1,0 +1,21 @@
+resources:
+- ../../base
+namespace: staging-versions
+namePrefix: staging-
+images:
+- name: versions
+  newName: ghcr.io/shadinmd/versions
+  newTag: staging-5f8b3ef
+replicas:
+- count: 2
+  name: versions
+patches:
+- patch: |-
+    - op: replace
+      path: /spec/rules/0/host
+      value: staging-versions.nodecluster.online
+  target:
+    kind: Ingress
+    name: versions
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
