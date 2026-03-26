@@ -11,7 +11,8 @@ const App = () => {
         fontSize: "2rem",
       }}
     >
-      Version: {__APP_VERSION__}
+      <p>Version: {__APP_VERSION__}</p>
+      <p>feat 1</p>
     </div>
   );
 };
