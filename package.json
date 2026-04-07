@@ -56,7 +56,9 @@
         {
           "successComment": false,
           "failComment": false,
-          "labels": true
+          "labels": [
+            "semantic-release"
+          ]
         }
       ]
     ]
