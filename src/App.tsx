@@ -17,6 +17,7 @@ const App = () => {
       <p>feat 3</p>
       <p>feat 4</p>
       <p>feat 5</p>
+      <p>feat 6</p>
     </div>
   );
 };
